@@ -527,7 +527,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.10322347, g: 0.93962264, b: 0.05495901, a: 1}
+  m_Color: {r: 0.011764706, g: 0, b: 0.18431373, a: 0.7607843}
   m_Origin: {x: -12, y: -8, z: 0}
   m_Size: {x: 25, y: 17, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -771,4 +771,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: {fileID: 2537289727799923194}
-  isRangeVisible: 0
+  isRangeVisible: 1
