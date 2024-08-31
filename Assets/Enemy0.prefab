@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8584131281163485120}
   - component: {fileID: 6199300988374210545}
   - component: {fileID: 4213740274647888105}
+  - component: {fileID: 1383511383238742932}
   m_Layer: 0
   m_Name: Enemy0
   m_TagString: Untagged
@@ -97,4 +98,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e4da18226c6da4195aca77a8fe1374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  died:
+    m_PersistentCalls:
+      m_Calls: []
+  moveSpeed: 1
+  hitPoints: 1
+--- !u!58 &1383511383238742932
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136591643110074901}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.27

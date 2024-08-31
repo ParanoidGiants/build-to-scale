@@ -14,7 +14,7 @@ public class BaseBuilding : MonoBehaviour
     }
 
     
-    public bool IsBuildingOnGridCell(Vector3 worldPosition)
+    public bool IsBuildingOnWorldPosition(Vector3 worldPosition)
     {
         var cellIndex = _tilemap.WorldToCell(worldPosition);
         Debug.Log($"BASE: {cellIndex}");

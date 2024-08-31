@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BuildController : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class BuildController : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         var mousePositionWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var currentCell = grid.WorldToCell(mousePositionWorld);
 

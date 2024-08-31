@@ -1,16 +1,27 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
+    private static BuildingManager _instance;
+    public static BuildingManager Instance => _instance;
     public Grid grid;
     public BaseBuilding baseBuilding;
     public List<TowerBuilding> towers;
     public GameObject towerPrefab;
-    public int maxPlacementCount = 2;
+    public int maxPlacementCount = 0;
     public int currentPlacementCount = 0;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+        _instance = this;
+    }
 
     public bool IsBuildingOnGridCell(Vector3Int cellIndex)
     {
@@ -19,10 +30,10 @@ public class BuildingManager : MonoBehaviour
 
     public bool IsTowerOnGridCell(Vector3Int cellIndex)
     {
+        var worldPosition = grid.CellToWorld(cellIndex);
         foreach (var tower in towers)
         {
-            var worldPosition = grid.CellToWorld(cellIndex);
-            if (tower.IsBuildingOnGridCell(worldPosition))
+            if (tower.IsBuildingOnWorldPosition(worldPosition))
             {
                 return true;
             }
@@ -33,14 +44,20 @@ public class BuildingManager : MonoBehaviour
     public bool IsBaseOnGridCell(Vector3Int cellIndex)
     {
         var worldPosition = grid.CellToWorld(cellIndex);
-        return baseBuilding.IsBuildingOnGridCell(worldPosition);
+        return baseBuilding.IsBuildingOnWorldPosition(worldPosition);
+    }
+
+    public bool IsBuildingOnWorldPosition(Vector3 worldPosition)
+    {
+        var cellIndex = grid.WorldToCell(worldPosition);
+        return IsBuildingOnGridCell(cellIndex);
     }
 
     public void RemoveTower(Vector3Int cellIndex)
     {
         foreach (var tower in towers)
         {
-            if (tower.IsBuildingOnGridCell(cellIndex))
+            if (tower.IsBuildingOnWorldPosition(cellIndex))
             {
                 towers.Remove(tower);
                 Destroy(tower.gameObject);
@@ -72,7 +89,6 @@ public class BuildingManager : MonoBehaviour
     {
         if (CanBuildOnCell(currentCell))
         {
-            // set sprite for gridCell
             AddTower(currentCell);
         }
         else if (IsTowerOnGridCell(currentCell))
