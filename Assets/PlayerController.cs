@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum PlayerMode
@@ -18,10 +16,10 @@ public class PlayerController : MonoBehaviour
         directAttackController = GetComponentInChildren<DirectAttackController>();
         buildController = GetComponentInChildren<BuildController>();
     }
-    public void SetAttackMode()
+
+    private void Start()
     {
-        buildController.gameObject.SetActive(false);
-        directAttackController.gameObject.SetActive(true);
+        ExitBuildMode();
     }
 
     public void EnterBuildMode()
@@ -29,6 +27,7 @@ public class PlayerController : MonoBehaviour
         buildController.gameObject.SetActive(true);
         directAttackController.gameObject.SetActive(false);
         mode = PlayerMode.BUILD;
+        BuildingManager.Instance.ShowPlacementGrid();
     }
 
     public void ExitBuildMode()
@@ -36,5 +35,6 @@ public class PlayerController : MonoBehaviour
         buildController.gameObject.SetActive(false);
         directAttackController.gameObject.SetActive(true);
         mode = PlayerMode.ATTACK;
+        BuildingManager.Instance.HidePlacementGrid();
     }
 }

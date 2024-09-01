@@ -101,7 +101,7 @@ MonoBehaviour:
   died:
     m_PersistentCalls:
       m_Calls: []
-  moveSpeed: 1
+  moveSpeed: 2
   hitPoints: 1
 --- !u!58 &1383511383238742932
 CircleCollider2D:

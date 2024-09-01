@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,6 +25,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (baseBuilding == null)
+        {
+            return;
+        }
         var moveDirection = Vector3.Normalize(baseBuilding.transform.position - transform.position);
         transform.position += moveDirection * moveSpeed * Time.deltaTime;
     }
@@ -40,7 +43,7 @@ public class Enemy : MonoBehaviour
     {
         var dealtDamage = Mathf.Min(damage, hitPoints);
         hitPoints -= damage;
-        if (hitPoints < 0)
+        if (hitPoints <= 0)
         {
             Destroy(gameObject);
         }
